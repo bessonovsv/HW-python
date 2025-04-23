@@ -4,12 +4,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 @pytest.fixture(scope="module")
 def driver():
     """Фикстура инициализации драйвера"""
     driver = webdriver.Firefox()
     yield driver
     driver.quit()
+
 
 def test_checkout_total(driver):
     # Открыть сайт
@@ -27,18 +29,21 @@ def test_checkout_total(driver):
 
     # Добавить в корзину товары с использованием точного XPATH
     backpack_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, '//*[@id="add-to-cart-sauce-labs-backpack"]'))
+        EC.element_to_be_clickable((By.XPATH,
+                                    '//*[@id="add-to-cart-sauce-labs-backpack"]'))
     )
     backpack_button.click()
 
     # Добавить другие товары аналогично (например, Sauce Labs Bolt T-Shirt)
     bolt_tshirt_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, '//*[@id="add-to-cart-sauce-labs-bolt-t-shirt"]'))
+        EC.element_to_be_clickable((By.XPATH,
+                                    '//*[@id="add-to-cart-sauce-labs-bolt-t-shirt"]'))
     )
     bolt_tshirt_button.click()
 
     onesie_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, '//*[@id="add-to-cart-sauce-labs-onesie"]'))
+        EC.element_to_be_clickable((By.XPATH,
+                                    '//*[@id="add-to-cart-sauce-labs-onesie"]'))
     )
     onesie_button.click()
 
@@ -60,8 +65,9 @@ def test_checkout_total(driver):
 
     # Прочитать со страницы итоговую стоимость (Total)
     total = WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located((By.CLASS_NAME, "summary_total_label"))
-    ).text
+        EC.visibility_of_element_located((By.CLASS_NAME,
+                                          "summary_total_label"))).text
 
     # Проверить итоговую сумму
-    assert total == "Total: $58.29", f"Expected total to be '$58.29', but got '{total}'"
+    assert total == "Total: $58.29",\
+        f"Expected total to be '$58.29', but got '{total}'"
