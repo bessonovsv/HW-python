@@ -40,7 +40,7 @@ def test_calculator_form(chrome_browser):
     with allure.step("Ожидание появления результата"):
         WebDriverWait(chrome_browser, 46).until(
             EC.text_to_be_present_in_element(
-            (By.CLASS_NAME, 'screen'), '15')
+                (By.CLASS_NAME, 'screen'), '15')
         )
 
     with allure.step("Получение результата"):

@@ -104,7 +104,6 @@ class ShopPage:
             self.driver.find_element(By.CSS_SELECTOR,
                                      ".btn_primary.cart_button").click()
 
-
     @allure.step("Получение общей суммы")
     def get_total(self) -> str:
         """
@@ -114,4 +113,4 @@ class ShopPage:
          """
         return WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.CLASS_NAME,
-                                           "summary_total_label"))).text
+                                              "summary_total_label"))).text
