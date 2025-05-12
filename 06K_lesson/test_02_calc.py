@@ -14,7 +14,8 @@ def chrome_browser():
 
 
 def test_calculator_form(chrome_browser):
-    chrome_browser.get("https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
+    chrome_browser.get("https://bonigarcia.dev/"
+                       "selenium-webdriver-java/slow-calculator.html")
 
     delay_input = chrome_browser.find_element(By.ID, 'delay')
     delay_input.clear()
@@ -43,7 +44,6 @@ def test_calculator_form(chrome_browser):
     WebDriverWait(chrome_browser, 46).until(EC.text_to_be_present_in_element(
         (By.CLASS_NAME, 'screen'), '15')
     )
-
 
     result_text = chrome_browser.find_element(By.CLASS_NAME, 'screen').text
     print("Результат", result_text)
